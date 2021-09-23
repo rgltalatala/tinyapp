@@ -21,7 +21,7 @@ const toggleDark = () => {
 const toggleLight = () => {
     document.body.style.backgroundColor = '#FFFFFF'
     document.body.style.color = '#000000'
-    appName.style.color = "black"
+    appName.style.color = "#C9BFDE"
 }
 
 const rotateRight = () => {
