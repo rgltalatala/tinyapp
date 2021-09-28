@@ -1,0 +1,19 @@
+@font-face{
+    font-family: Raleway-Black;
+    src: url("../fonts/Raleway-Black.ttf") format("opentype");
+}
+
+html, body {
+    font-family: Raleway-Black;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+canvas {
+    border: 5px solid;
+    border-color: #C9BFDE;
+}

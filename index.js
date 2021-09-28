@@ -6,22 +6,30 @@ let apps = [
     'shop',
     'note',
     'game',
+    'art',
     'grave'
 ]
 
 let appName = document.getElementById('app-name');
+let links = document.getElementsByClassName("nav-bar-link");
 appName.innerHTML = apps[0];
 
 const toggleDark = () => {
     document.body.style.backgroundColor = '#000000'
     document.body.style.color = '#FFFFFF'
     appName.style.color = "red"
+    for (let i = 0; i < links.length; i++){
+        links[i].style.color = '#FFFFFF'
+    }
 }
 
 const toggleLight = () => {
     document.body.style.backgroundColor = '#FFFFFF'
     document.body.style.color = '#000000'
     appName.style.color = "#C9BFDE"
+    for (let i = 0; i < links.length; i++){
+        links[i].style.color = '#000000'
+    }
 }
 
 const rotateRight = () => {

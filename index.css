@@ -13,8 +13,10 @@ body {
 
 .nav-bar{
     width: 100vw;
+    height: 5vh;
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
 }
 
 main {
@@ -45,6 +47,10 @@ main > div > button:hover{
     align-items: center;
 }
 
+.tiny-app {
+    font-size: 7rem
+}
+
 .right {
     display: flex;
     justify-content: center;
@@ -57,6 +63,8 @@ main > div > button:hover{
     margin-left: 30px;
     margin-right: 30px;
     font-size: 3rem;
+    justify-content: center;
+    align-items: center;
 }
 
 
