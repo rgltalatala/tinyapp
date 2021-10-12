@@ -21,15 +21,17 @@ body {
 
 main {
     display: flex;
+    justify-content: center;
+    flex-direction: column;
     height: 80vh;
 }
 
-main > div {
+main > span {
     display: flex;
     justify-content: center;
 }
 
-main > div > button {
+div > aside > button {
     height: 30px;
     width: 50px;
     border: 5px;
@@ -59,7 +61,7 @@ main > div > button:hover{
 
 .carousel {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     margin-left: 30px;
     margin-right: 30px;
     font-size: 3rem;
@@ -79,4 +81,16 @@ a:hover{
 
 .app-name {
     color: #C9BFDE;
+}
+
+div#container {
+    display: flex;
+    flex-direction: column;
+}
+
+div#display{
+    display: flex;
+    justify-content: center;
+    height: 500px;
+    width: 80vw;
 }

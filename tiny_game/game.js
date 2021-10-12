@@ -1,91 +1,105 @@
-// initial state for the game
-px = py = 10; // initial pos of snake
-gs = ts = 20; // initial pos of head
-ax = ay = 15; // initial pos of apple
+const generateGame = () => {
+    canvas = document.createElement('canvas');
+    canvas.id = 'game';
+    canvas.width = '500';
+    canvas.height = '500';
+    ctx = canvas.getContext('2d');
 
-// only values manipulated by our keys (directional keys)
-xv = yv = 0; // extra variable for later use
+// intial state for our game
+posX = posY = 10; // snake
+appleX = appleY = 15;
+gridSize = 20
+tableSize = 25;
 
-body = []; // body of snake {x: px, y: py}
-segments = 5; // snake tail
+// only values manipulated by our d-pad (directional values)
+moveX = moveY = 0;
 
+// our snake
+body = []; // {x: posX, y: posY}
+segments = 5;
+
+
+// logic for game
 const game = () => {
-    px += xv;
-    py += yv; 
 
-    ctx.fillStyle = "#000000";
+    // adjust the position of our snake based on changes to directional values.
+    posX += moveX;
+    posY += moveY;
+
+    ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#2ED9EB";
+    ctx.fillStyle = '#2ED9EB';
 
-    if (px < 0){
-        px = ts - 1;
+    // if our snake exits our table, redraw on oposite side.
+    if(posX < 0) {
+        posX = tableSize - 1;
     };
-
-    if (px > ts - 1) {
-        px = 0;
+    if(posX > tableSize - 1) {
+        posX = 0;
+    };
+    if(posY < 0) {
+        posY = tableSize - 1;
     }
-    
-    if (py < 0){
-        py = ts - 1;
-    };
-
-    if (py > ts - 1) {
-        py = 0;
+    if(posY > tableSize - 1) {
+        posY = 0;
     }
 
-    for (let i = 0; i < body.length; i++){
-        ctx.fillRect(body[i].x * gs, body[i].y * gs, gs - 2, gs - 2);
-        if (body[i].x === px && body[i].y === py){
+    // draw our snake based on the size of our grid 
+    for(let i=0; i < body.length; i++) {
+        ctx.fillRect(body[i].x * gridSize, body[i].y * gridSize, gridSize - 2, gridSize - 2);
+        
+        // if at any point a segment of our snake intersects with another segment, reset our segments back to initial value.
+        if(body[i].x === posX && body[i].y === posY) {
             segments = 5;
-        }
-    }
+        };
+    };
 
-    body.push({x: px, y: py})
+    body.push({x: posX, y: posY});
 
-    while (body.length > segments){
+    // if at any point our body becomes longer than the number of segments, remove surplus segments.
+    while(body.length > segments) {
         body.shift();
-    }
+    };
 
-    // eating
-    if (ax === px && ay === py){
+    // logic for eating: if apple position and snake position overlap, add a segment and re-generate apple.
+    if(appleX === posX && appleY === posY) {
         segments++
-        ax = Math.floor(Math.random() * ts);
-        ay = Math.floor(Math.random() * ts);
-    }
+        appleX = Math.floor(Math.random() * tableSize);
+        appleY = Math.floor(Math.random() * tableSize);
+    }    
 
     ctx.fillStyle = "#FF0000";
-    ctx.fillRect(ax * gs, ay * gs, gs - 2, gs - 2);
+    ctx.fillRect(appleX * gridSize, appleY * gridSize, gridSize - 2, gridSize - 2)
+
 }
 
-// controls our d-pad
+// logic for d-pad control
 const keyDown = e => {
     switch(e.keyCode) {
         case(65):
-            xv = -1;
-            yv = 0
+            moveX = -1;
+            moveY = 0;
             break;
         case(87):
-            xv = 0;
-            yv = -1
+            moveX = 0;
+            moveY = -1;
             break;
         case(68):
-            xv = 1;
-            yv = 0
+            moveX = 1;
+            moveY = 0;
             break;
         case(83):
-            xv = 0;
-            yv = 1;
+            moveX = 0;
+            moveY = 1;
             break;
     }
 }
-
-const init = () => {
-    canvas = document.getElementById('game');
-    ctx = canvas.getContext('2d');
     document.addEventListener('keydown', keyDown);
     setInterval(game, 1000/15)
+    let display = document.getElementById('display');
+    display.append(canvas);
 }
 
 // window.onload = init();
 
-document.addEventListener("DOMContentLoaded", init) // same as above
+document.addEventListener("DOMContentLoaded", generateGame) // same as above

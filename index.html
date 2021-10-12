@@ -5,32 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
-    <script src='index.js' defer></script>
-    <title>tiny app</title>
+    <script src="apps.js" defer></script>
+    <script src="./tiny_art/art.js" defer></script>
+    <script src="./tiny_game/game.js" defer></script>
+    <script src="index.js" defer></script>
+    <title>TINY</title>
 </head>
 <body>
-    <header class="nav-bar">
-       <a class="nav-bar-link" href="">app</a> 
-       <a class="nav-bar-link" href="">blog</a> 
-       <a class="nav-bar-link" href="">shop</a> 
-       <a class="nav-bar-link" href="">note</a> 
-       <a class="nav-bar-link" href="">game</a> 
-       <a class="nav-bar-link" href="./tiny_art/index.html">art</a> 
-    </header>
+    <div id='container'>
 
-    <main>
-        <div class="left">
-            <button id='left-button'><-</button>
-        </div>
-    
+        <header>
+        </header>
         <div class="carousel">
-            <div class="tiny-app">tiny <span id='app-name' class="app-name"></span></div>
-            <span>coming soon!</span>
+            <aside class="left">
+                <button id='button-left'><</button>
+            </aside>
+                
+            <main>
+                <span class="app-name">lil <span id="app-name" > </span></span>
+                <div id='display'></div>
+                <div id='options'></div>
+            </main>
+            
+            <aside class="right">
+                <button id='button-right'>></button>
+            </aside>
         </div>
-    
-        <div class="right">
-            <button id='right-button'>-></button>
-        </div>
-    </main>
+        
+
+        <footer>
+        </footer>
+
+    </div>
 </body>
 </html>
