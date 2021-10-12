@@ -60,30 +60,47 @@
 // document.getElementById('left-button').onclick = rotateLeft;
 
 
-   
-let appList = [' app', ' blog', ' shop', ' game', ' note', ' art', ' grave'];
+let appList = Object.values(apps)
 
 const display = document.getElementById('display');
 const appTitle = document.getElementById('app-name');
 const options = document.getElementById('options');
 
 const cleanUp = () => {
+    document.body.style.backgroundColor = "white"
+    let appName = document.getElementsByClassName("app-name")[0];
+    appName.style.color = "black"
     display.innerHTML = '';
+}
+
+const render = (appName) => {
+    cleanUp();
+    switch (appName) {
+        case('game'):
+            return generateGame();
+        case('art'):
+            return generateArt();
+        case('grave'):
+            return generateGrave();
+        default:
+            return;
+    }
 }
 
 const setDisplay = () => {
     let selectedApp = appList[0];
-    appTitle.innerHTML = selectedApp;
-    appTitle.style.color = '#C9BFDE';
-    if (selectedApp === " art"){
-        cleanUp();
-        generateArt();
-    } else if (selectedApp === " game") {
-        cleanUp();
-        generateGame();
-    } else {
-        cleanUp();
-    }
+    appTitle.innerHTML = selectedApp.name;
+    appTitle.style.color = selectedApp.color;
+    render(selectedApp.name);
+    // if (selectedApp === " art"){
+    //     cleanUp();
+    //     generateArt();
+    // } else if (selectedApp === " game") {
+    //     cleanUp();
+    //     generateGame();
+    // } else {
+    //     cleanUp();
+    // }
 };
 
 const rotateRight = () => {
@@ -99,6 +116,20 @@ const rotateLeft = () => {
 document.getElementById('button-right').onclick = rotateRight;
 document.getElementById('button-left').onclick = rotateLeft;
 
+const keyDown = e => {
+    switch(e.keyCode){
+        case(37):
+            rotateLeft();
+            break;
+        case(39):
+            rotateRight();
+            break;
+        default:
+            return;
+    }
+}
+
+document.addEventListener('keydown', keyDown);
 
 document.addEventListener('DOMContentLoaded', () => {
     setDisplay();
