@@ -78,6 +78,8 @@ const render = (appName) => {
     switch (appName) {
         case('game'):
             return generateGame();
+        case('notes'):
+            return generateNotes();
         case('art'):
             return generateArt();
         case('grave'):
@@ -92,6 +94,7 @@ const setDisplay = () => {
     appTitle.innerHTML = selectedApp.name;
     appTitle.style.color = selectedApp.color;
     render(selectedApp.name);
+    // generateNotes()
     // if (selectedApp === " art"){
     //     cleanUp();
     //     generateArt();
